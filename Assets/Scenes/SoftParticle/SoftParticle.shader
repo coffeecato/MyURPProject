@@ -1,3 +1,6 @@
+// https://blog.csdn.net/coffeecato
+// 2022.0211
+// 软粒子
 Shader "coffeecat/depth/SoftParticle"
 {
     Properties
