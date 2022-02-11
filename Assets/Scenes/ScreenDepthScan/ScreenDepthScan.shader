@@ -32,29 +32,24 @@ Shader "coffeecat/depth/ScreenDepthScan"
     {
         float4 pos : SV_POSITION;
         float2 uv : TEXCOORD0;
-        float4 projPos : TEXCOORD1;
     };
 
     v2f vert(appdata v) 
     {
         v2f o;
         o.pos = TransformObjectToHClip(v.vertex.xyz);
-        o.projPos = ComputeScreenPos(o.pos);
-        float3 worldPos = TransformObjectToWorld(v.vertex.xyz);
-        float3 viewPos = TransformWorldToView(worldPos);
-        o.projPos.z = -viewPos.z;
-        // o.projPos.z = -UnityObjectToViewPos(v.vertex.xyz).z;     // built-in function
-
         o.uv = TRANSFORM_TEX(v.uv, _MainTex);
         return o;
     }
 
     half4 frag(v2f i) : SV_Target 
     {
-        float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, i.uv);
-        float linear01EyeDepth = Linear01Depth(depth, _ZBufferParams);
-        half4 screenTexture = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+        half4 screenTexture = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);    // 采样主帖图
 
+        float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, i.uv);
+        float linear01EyeDepth = Linear01Depth(depth, _ZBufferParams);              // 观察空间下的线性深度，0 at camera, 1 at far plane.
+        
+        // 深度 > _ScanValue && 深度 < _ScanValue + 扫描线宽度 时显示扫描线
         if(linear01EyeDepth > _ScanValue && linear01EyeDepth < _ScanValue + _ScanLineWidth)
         {
             return screenTexture * _ScanLightStrength * _ScanLineColor;
