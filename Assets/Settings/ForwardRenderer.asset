@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977bff38c1d4d94cb5b8d9187128c63, type: 3}
   m_Name: ScreenDepthScanRenderer
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     renderPassEvent: 400
     material: {fileID: 2100000, guid: 5113dd892ddb30c46b7f612098589330, type: 2}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7bc08d808b126845aa88665d430357f, type: 3}
   m_Name: ReconstructWorldPosInvMatrixRenderer
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   setting:
     material: {fileID: 2100000, guid: 1b6bfea0c3d779f40a7141cd7769eede, type: 2}
     passName: ReconstructWorldPosInvMatrixRenderer
