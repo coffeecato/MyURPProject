@@ -44,13 +44,17 @@ Shader "coffeecat/depth/ScreenDepthScan"
 
     half4 frag(v2f i) : SV_Target 
     {
-        half4 screenTexture = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);    // 采样主帖图
-
+        // 1.采样主帖图
+        half4 screenTexture = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);    
+        // 2.采样深度纹理，把NDC空间的非线性深度转换为观察空间的线性深度
         float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, i.uv);
         float linear01EyeDepth = Linear01Depth(depth, _ZBufferParams);              // 观察空间下的线性深度，0 at camera, 1 at far plane.
         
+        // 3.临时代码用于控制扫描线的显示范围(可以用下面注释掉的两行有直观的认识)
         // 深度 > _ScanValue && 深度 < _ScanValue + 扫描线宽度 时显示扫描线
         if(linear01EyeDepth > _ScanValue && linear01EyeDepth < _ScanValue + _ScanLineWidth)
+        // if(linear01EyeDepth > _ScanValue)
+        // if(linear01EyeDepth < _ScanValue + _ScanLineWidth)
         {
             return screenTexture * _ScanLightStrength * _ScanLineColor;
         }
@@ -63,7 +67,7 @@ Shader "coffeecat/depth/ScreenDepthScan"
         Pass
         {
             Tags { "LightMode" = "UniversalForward" }
-            ZTest On Cull Off ZWrite Off
+            ZTest Off Cull Off ZWrite Off
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
