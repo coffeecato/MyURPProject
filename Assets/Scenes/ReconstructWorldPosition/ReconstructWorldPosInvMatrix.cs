@@ -13,8 +13,8 @@ public class ReconstructWorldPosInvMatrix : MonoBehaviour
 
     private void OnEnable() {
         if (postEffectMat == null)
-            // postEffectMat = new Material(Shader.Find("coffeecat/depth/ReconstructWorldPosInvMatrix"));
-            postEffectMat = new Material(Shader.Find("coffeecat/depth/ReconstructWorldPosViewportRay"));
+            postEffectMat = new Material(Shader.Find("coffeecat/depth/ReconstructWorldPosInvMatrix"));
+            // postEffectMat = new Material(Shader.Find("coffeecat/depth/ReconstructWorldPosViewportRay"));
         currentCamera.depthTextureMode |= DepthTextureMode.Depth;
     }
 
