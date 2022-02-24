@@ -91,6 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 0
   setting:
-    material: {fileID: 2100000, guid: 2d5af40926e529e46b905d76bf3a1f2e, type: 2}
+    material: {fileID: 2100000, guid: 743f709b9343d804d85a7be396d822ae, type: 2}
     passName: ReconstructWorldPosInvMatrixRenderer
     textureId: _ReconstructWorldPosInvMatrix
