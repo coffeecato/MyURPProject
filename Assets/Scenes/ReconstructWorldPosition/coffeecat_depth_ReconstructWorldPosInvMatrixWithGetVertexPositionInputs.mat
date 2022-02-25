@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: coffeecat_depth_ReconstructWorldPosInvMatrixNew
+  m_Name: coffeecat_depth_ReconstructWorldPosInvMatrixWithGetVertexPositionInputs
   m_Shader: {fileID: 4800000, guid: 7b5dace7a2a424c45871906d43ca1acf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
