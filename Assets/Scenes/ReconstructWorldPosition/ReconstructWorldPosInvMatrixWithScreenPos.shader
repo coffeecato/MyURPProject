@@ -34,11 +34,23 @@ Shader "coffeecat/depth/ReconstructWorldPosInvMatrixWithScreenPos"
         // output.pos = TransformObjectToHClip(v.vertex.xyz);
         // output.ndc = ComputeScreenPos(output.pos);
         // 方法3
-        // 手算ndc，参考GetVertexPositionInputs的实现
+        // vert手算ndc，参考GetVertexPositionInputs的实现
         output.pos = TransformObjectToHClip(v.vertex.xyz);
         float4 ndc = output.pos * 0.5f;
         output.ndc.xy = float2(ndc.x, ndc.y * _ProjectionParams.x) + ndc.w;
         output.ndc.zw = output.pos.zw;
+        // [vert]解决 DX 运行后上下翻转（DX需要翻转uv.y; OPENGL不需要）
+        // if (_ProjectionParams.x < 0)
+        //     output.ndc.y = 1 - output.ndc.y;
+        // 在vert中计算.y = 1 - .y 与 frag中 .y *= -1 本质上是等价的。
+        // 证明如下：
+        // 已知 clipPos.xy = ndc.xy * 2 - 1
+        // 这里仅关注.y clipPos.y = ndc.y * 2 - 1        [1]
+        // 当ndc.y = 1 - ndc.y时，带入上面的公式
+        // clipPos.y = (1 - ndc.y) * 2 - 1
+        // clipPos.y = 1 - 2 * ndc.y                    [2]
+        // 可见 式[1] * -1 = 式[2]
+        // 得证。
         
         return output;
     }
@@ -53,8 +65,8 @@ Shader "coffeecat/depth/ReconstructWorldPosInvMatrixWithScreenPos"
         #endif
         float2 positionNDC = i.ndc.xy / i.ndc.w;     
         float3 worldPos = ComputeWorldSpacePosition(positionNDC, depth, UNITY_MATRIX_I_VP);
-        // 解决y轴翻转的问题
-        // 也可以用_ProjectionParams < 0 在vert中 ndc.y = 1 - ndc.y，参见：https://docs.unity3d.com/2019.4/Documentation/Manual/SL-PlatformDifferences.html
+        // [frag]解决 DX 运行后上下翻转（DX需要翻转uv.y; OPENGL不需要）
+        // 参见：https://docs.unity3d.com/2019.4/Documentation/Manual/SL-PlatformDifferences.html
         #if UNITY_UV_STARTS_AT_TOP 
             worldPos.y = -worldPos.y;
         #endif
