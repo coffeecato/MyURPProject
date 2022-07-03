@@ -46,8 +46,9 @@ Shader "coffeecat/depth/ScreenDepthScan"
     {
         // 1.采样主帖图
         half4 screenTexture = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);    
-        // 2.采样深度纹理，把NDC空间的非线性深度转换为观察空间的线性深度
+        // 2.采样深度纹理
         float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, i.uv);
+        // 把NDC的非线性深度转换为观察空间的线性深度
         float linear01EyeDepth = Linear01Depth(depth, _ZBufferParams);              // 观察空间下的线性深度，0 at camera, 1 at far plane.
         
         // 3.临时代码用于控制扫描线的显示范围(可以用下面注释掉的两行有直观的认识)

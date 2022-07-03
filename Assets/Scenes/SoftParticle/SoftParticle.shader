@@ -60,8 +60,8 @@ Shader "coffeecat/depth/SoftParticle"
         // 方法2
         // o.projPos.z = -UnityObjectToViewPos(v.vertex.xyz).z;
         // 方法3
-        float3 worldPos = TransformObjectToWorld(v.vertex.xyz);
-        float3 viewPos = TransformWorldToView(worldPos);
+        float3 worldPos = TransformObjectToWorld(v.vertex.xyz); // 顶点在世界空间的坐标
+        float3 viewPos = TransformWorldToView(worldPos);    // 顶点在观察空间的坐标
         o.projPos.z = -viewPos.z;
 
         o.color = v.color;
@@ -72,10 +72,11 @@ Shader "coffeecat/depth/SoftParticle"
 
     half4 frag (v2f i) : SV_Target
     {
-        // 顶点的线性深度，ComputeScreenPos得到的坐标没有进行齐次除法，需要手动/w
+        // 顶点的线性深度（观察空间），ComputeScreenPos得到的坐标没有进行齐次除法，需要手动/w
         float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, i.projPos.xy / i.projPos.w), _ZBufferParams);
         // 顶点到相机的距离
         float partZ = i.projPos.z;
+        // 上述两个距离越接近说明与穿插的位置越接近
         float fade = saturate(_InvFade * (sceneZ - partZ));
         i.color.a *= fade;
         half4 col = i.color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
