@@ -38,15 +38,21 @@ MonoBehaviour:
   - {fileID: 34673720742470329}
   - {fileID: 2669546150320771223}
   - {fileID: 767022056950317120}
-  m_RendererFeatureMap: f43404d12446858bb962e5b7902f7b009790617114220c2540c069377f02a50a
+  - {fileID: 7536739449305717928}
+  m_RendererFeatureMap: f43404d12446858bb962e5b7902f7b009790617114220c2540c069377f02a50aa85c8a0899e09768
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
+  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
     screenSpaceShadowPS: {fileID: 4800000, guid: 0f854b35a0cf61a429bd5dcfea30eddd,
       type: 3}
     samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
+    tileDepthInfoPS: {fileID: 0}
+    tileDeferredPS: {fileID: 0}
+    stencilDeferredPS: {fileID: 4800000, guid: e9155b26e1bc55942a41e518703fe304, type: 3}
     fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
+    materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
   m_OpaqueLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -61,6 +67,8 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
+  m_RenderingMode: 0
+  m_AccurateGbufferNormals: 0
 --- !u!114 &34673720742470329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47b1497825afb64da1f1ec88022f915, type: 3}
   m_Name: FogRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
 --- !u!114 &2669546150320771223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,3 +116,16 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 317e0c31c14b69b42b1091232ce3d97c, type: 2}
     passName: ReconstructWorldPosInvMatrixRenderer
     textureId: _ReconstructWorldPosInvMatrix
+--- !u!114 &7536739449305717928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33056d22ea04f11408b847a6ba136bfa, type: 3}
+  m_Name: GlitchImageRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
