@@ -37,7 +37,8 @@ MonoBehaviour:
   - {fileID: -8393225206595570444}
   - {fileID: 34673720742470329}
   - {fileID: 2669546150320771223}
-  m_RendererFeatureMap: f43404d12446858bb962e5b7902f7b009790617114220c25
+  - {fileID: 767022056950317120}
+  m_RendererFeatureMap: f43404d12446858bb962e5b7902f7b009790617114220c2540c069377f02a50a
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -77,6 +78,19 @@ MonoBehaviour:
     renderPassEvent: 300
     material: {fileID: 2100000, guid: b194745e4d7a31440adf286a464968b1, type: 2}
     textureId: _DepthTexture
+--- !u!114 &767022056950317120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47b1497825afb64da1f1ec88022f915, type: 3}
+  m_Name: FogRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &2669546150320771223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 0
   setting:
-    material: {fileID: 2100000, guid: ee0d7649a4d04754198b8883d9c34826, type: 2}
+    material: {fileID: 2100000, guid: 317e0c31c14b69b42b1091232ce3d97c, type: 2}
     passName: ReconstructWorldPosInvMatrixRenderer
     textureId: _ReconstructWorldPosInvMatrix
