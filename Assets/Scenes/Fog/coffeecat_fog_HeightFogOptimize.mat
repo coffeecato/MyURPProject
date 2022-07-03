@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: coffeecat_fog_HeightFogOptimize
+  m_Shader: {fileID: 4800000, guid: e37097f098f19284c892b4b918080a13, type: 3}
+  m_ShaderKeywords: _OPENHEIGHT_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DepthRampTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightRampTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: e152a0ac871ee464fbe7da87f53b59fc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _FogDensity: 1
+    - _FogDepthBegin: 0
+    - _FogDepthDensity: 6.2
+    - _FogDepthDistance: 4.25
+    - _FogDepthEnd: 0
+    - _FogHeightBegin: -1
+    - _FogHeightDensity: 1
+    - _FogHeightEnd: 9.21
+    - _FogHeightRange: 0
+    - _NoiseScale: 1
+    - _NoiseSpX: 0.126
+    - _NoiseSpY: 0.188
+    - _OpenDepth: 0
+    - _OpenHeight: 1
+    - _WorldPosScale: 0.05
+    m_Colors:
+    - _FogColor: {r: 1, g: 0.042452812, b: 0.042452812, a: 1}
