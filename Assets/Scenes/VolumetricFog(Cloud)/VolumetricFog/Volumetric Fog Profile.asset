@@ -14,6 +14,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 8468659487751638896}
+  - {fileID: 5069596214218047603}
+--- !u!114 &5069596214218047603
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885d01c124ba5214c9783e45577e3f01, type: 3}
+  m_Name: Glitch
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  Fade:
+    m_OverrideState: 0
+    m_Value: 1
+  Speed:
+    m_OverrideState: 1
+    m_Value: 1.74
+  Amount:
+    m_OverrideState: 1
+    m_Value: 0
+  BlockLayer1_U:
+    m_OverrideState: 0
+    m_Value: 9
+  BlockLayer1_V:
+    m_OverrideState: 0
+    m_Value: 9
+  BlockLayer2_U:
+    m_OverrideState: 0
+    m_Value: 5
+  BlockLayer2_V:
+    m_OverrideState: 0
+    m_Value: 5
+  BlockLayer1_Indensity:
+    m_OverrideState: 0
+    m_Value: 8
+  BlockLayer2_Indensity:
+    m_OverrideState: 0
+    m_Value: 4
+  RGBSplitIndensity:
+    m_OverrideState: 0
+    m_Value: 0.5
 --- !u!114 &8468659487751638896
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -30,4 +75,4 @@ MonoBehaviour:
   m_AdvancedMode: 0
   StepCount:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2.65
