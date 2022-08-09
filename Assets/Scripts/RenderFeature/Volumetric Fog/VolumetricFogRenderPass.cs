@@ -10,17 +10,24 @@ class VolumetricFogRenderPass : ScriptableRenderPass
     private RenderTargetIdentifier m_Destination;
 
     private Material m_Material;
+    private Transform m_CloudTrans;
+    //public int _StepCount;
+    private Vector3 boundsMin, boundsMax;
 
     public VolumetricFogRenderPass(RenderPassEvent evt)
     {
         renderPassEvent = evt;
     }
 
-    public void Setup(RenderTargetIdentifier source, RenderTargetIdentifier desination, Material mat)
+    // 用于 active == false 时，避免添加 pass 到渲染队列。
+    public bool IsEnable() { return VolumeManager.instance.stack.GetComponent<VolumetricFog>().IsActive(); }
+
+    public void Setup(RenderTargetIdentifier source, RenderTargetIdentifier desination, Material mat, Transform trans)
     {
         m_Source = source;
         m_Destination = desination;
         m_Material = mat;
+        m_CloudTrans = trans;
     }
     // This method is called before executing the render pass.
     // It can be used to configure render targets and their clear state. Also to create temporary render target textures.
@@ -44,7 +51,16 @@ class VolumetricFogRenderPass : ScriptableRenderPass
         bool active = m_VolumetricFog.IsActive();
         if (active)
         {
-            cmd.SetGlobalTexture("_MainTex", m_Source);
+            if (m_CloudTrans != null)
+            {
+                boundsMin = m_CloudTrans.position - m_CloudTrans.localScale / 2;
+                boundsMax = m_CloudTrans.position + m_CloudTrans.localScale / 2;
+                Debug.LogFormat("boundsMin = {0}, boundsMax = {1}", boundsMin.ToString(), boundsMax.ToString());
+                cmd.SetGlobalVector("_boundsMin", boundsMin);
+                cmd.SetGlobalVector("_boundsMax", boundsMax);
+            }
+            cmd.SetGlobalFloat("_StepCount", m_VolumetricFog.StepCount.value);
+            //cmd.SetGlobalFloat("_StepCount", _StepCount);
             cmd.Blit(m_Source, m_Destination, m_Material);
         }
 

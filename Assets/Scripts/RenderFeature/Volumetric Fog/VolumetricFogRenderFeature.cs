@@ -12,12 +12,18 @@ public class VolumetricFogRenderFeature : ScriptableRendererFeature
     public Shader volumetricFogShader;
     private VolumetricFogRenderPass m_VolumetricFogPass;
     private Material m_VolumetricFogMaterial;
+    //[SerializeField]
+    public Transform cloudTransform;
+
+    //public int _StepCount;
 
     /// <inheritdoc/>
     public override void Create()
     {
         m_VolumetricFogPass = new VolumetricFogRenderPass(RenderPassEvent.AfterRenderingTransparents);
         m_CopyCameraColorPass = new CopyCameraColorPass(RenderPassEvent.AfterRenderingTransparents);
+        //m_VolumetricFogPass = new VolumetricFogRenderPass(RenderPassEvent.AfterRenderingOpaques);
+        //m_CopyCameraColorPass = new CopyCameraColorPass(RenderPassEvent.AfterRenderingOpaques);
 
         m_CameraColorAttachment.Init("_CameraColorTexture");
         m_CopyCameraColorAttachment.Init("_CopyCameraColorTexture");
@@ -30,10 +36,13 @@ public class VolumetricFogRenderFeature : ScriptableRendererFeature
     // This method is called when setting up the renderer once per-camera.
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        m_CopyCameraColorPass.Setup(m_CameraColorAttachment.Identifier(), m_CopyCameraColorAttachment);
-        renderer.EnqueuePass(m_CopyCameraColorPass);
+        if (m_VolumetricFogPass.IsEnable())
+        {
+            m_CopyCameraColorPass.Setup(m_CameraColorAttachment.Identifier(), m_CopyCameraColorAttachment);
+            renderer.EnqueuePass(m_CopyCameraColorPass);
+        }
 
-        m_VolumetricFogPass.Setup(m_CopyCameraColorAttachment.Identifier(), m_CameraColorAttachment.Identifier(), m_VolumetricFogMaterial);
+        m_VolumetricFogPass.Setup(m_CopyCameraColorAttachment.Identifier(), m_CameraColorAttachment.Identifier(), m_VolumetricFogMaterial, cloudTransform);
         renderer.EnqueuePass(m_VolumetricFogPass);
     }
 }
