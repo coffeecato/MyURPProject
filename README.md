@@ -9,9 +9,9 @@
 ## 目录
 填坑开始，深度纹理对于一些~~复杂~~（高级）的渲染技术来说是基础，搞不清楚原理，往后只能做个代码的搬运工，所以还是需要花大力气攻克的。  
 1.深度纹理，主要参考了https://blog.csdn.net/puppet_master/article/details/77489948 这篇博客，并在URP Render pipeline下实现其中的shader.  
-2.体积渲染，主要参考了https://zhuanlan.zhihu.com/p/248406797 
-3.占坑，深入研究Bloom 
-4.占坑，水体渲染 
+2.体积渲染，主要参考了https://zhuanlan.zhihu.com/p/248406797    
+3.占坑，深入研究Bloom    
+4.占坑，水体渲染     
 
 
 
